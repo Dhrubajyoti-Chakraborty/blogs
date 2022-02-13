@@ -1,6 +1,9 @@
 @extends('user/app')
+@section('bg-img',asset('storage/public/'.$post->image) )
 
-@section('bg-img',Storage::disk('local')->url($post->image))
+@section('head')
+<link rel="stylesheet" href="{{ asset('user/css/prism.css') }}">
+@endsection
 @section('title',$post->title)
 @section('sub-heading',$post->subtitle)
 
@@ -9,8 +12,10 @@
    <article>
    <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v7.0&appId=236307274117959&autoLogAppEvents=1"></script>
+
         <div class="container">
-            <div class="row">
+            <div class="row" style="">
+
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <small>Created at {{$post->created_at}}</small> 
                 <!-- ->diffForHumans() -->

@@ -11,6 +11,9 @@ class admin extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'admins';
+
+
     public function roles(){
         return $this->belongsToMany('App\Model\admin\role');
     }

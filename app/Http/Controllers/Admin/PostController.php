@@ -63,9 +63,18 @@ class PostController extends Controller
             'body'=>'required',
             'image'=>'required',
         ]);
+        // if($request->hasFile('image')){
+        //     $imageName=$request->image->getClientOriginalName();
+        //     $imageName = '/storage/public/'.$imageName;
+        // }
+
         if($request->hasFile('image')){
-             $imageName=$request->image->store('public');
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+            $imageName = time().'.'.$extension;
+            $file->move('storage/public/',$imageName);
         }
+        // return $imageName;
 
         $post=new post;
         $post->title=$request->title;
@@ -130,13 +139,21 @@ class PostController extends Controller
             'body'=>'required',
             'image'=>'required',
         ]);
+        // if($request->hasFile('image')){
+        //      $imageName=$request->image->getClientOriginalName();
+        //     //  $imageName = public_path($imageName);
+        // }
         if($request->hasFile('image')){
-             $imageName=$request->image->store('public');
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            $file->move('storage/public/',$fileName);
         }
-
+        // return $fileName;
+        // return asset('/public/storage/public/'.$imageName);
         $post=post::find($id);
         $post->title=$request->title;
-        $post->image=$imageName;
+        $post->image=$fileName;
         $post->subtitle=$request->subtitle;
         $post->slug=$request->slug;
         $post->body=$request->body;
@@ -161,4 +178,6 @@ class PostController extends Controller
         $posts=post::where('id',$id)->delete();
         return redirect()->back();
     }
+
+    
 }

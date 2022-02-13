@@ -21,7 +21,7 @@
 
                     </li>
                     <li>
-                        <a href="{{route('post')}}">Sample Post</a>
+                        <a href="{{--route('post')--}}">Services</a>
                     </li>
                     <li>
                         <a href="{{route('contact')}}">Contact</a>
@@ -53,7 +53,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="intro-header" style="background-image: url(@yield('bg-img')">
+    <header class="intro-header" style="background-image: url(@yield('bg-img'))">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
